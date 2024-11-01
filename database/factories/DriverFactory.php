@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class DriverFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_users' => User::factory(),
+            'name' => $this->faker->name(),
+            'phone' => $this->faker->numberBetween(123243,34653),
+            'is_online' => $this->faker->boolean(),
+            'is_charge' =>  $this->faker->boolean(),
         ];
     }
 }

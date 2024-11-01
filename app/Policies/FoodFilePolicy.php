@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\food_file;
+use App\Models\FoodFile;
 use Illuminate\Auth\Access\Response;
 
 class FoodFilePolicy
@@ -11,7 +11,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user)
     {
         //
     }
@@ -19,7 +19,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, food_file $foodFile): bool
+    public function view(User $user, FoodFile $foodFile)
     {
         //
     }
@@ -27,7 +27,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
         //
     }
@@ -35,7 +35,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, food_file $foodFile): bool
+    public function update(User $user, FoodFile $foodFile)
     {
         //
     }
@@ -43,7 +43,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, food_file $foodFile): bool
+    public function delete(User $user, FoodFile $foodFile)
     {
         //
     }
@@ -51,7 +51,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, food_file $foodFile): bool
+    public function restore(User $user, FoodFile $foodFile)
     {
         //
     }
@@ -59,7 +59,7 @@ class FoodFilePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, food_file $foodFile): bool
+    public function forceDelete(User $user, FoodFile $foodFile)
     {
         //
     }

@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'email_verified_at',
         'password',
     ];
 
@@ -45,4 +46,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function Customer(){
+        return $this->has(Customer::class);
+    }
+    public function Driver(){
+        return $this->has(Driver::class);
+    }
+
+     public function is_admin(){
+        return $this->is_admin;
+     }
+
 }

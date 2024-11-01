@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
+use App\Models\Driver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
+            'id_customer' => Customer::factory(),
+            'id_driver' => Driver::factory(),
+             //
+            'is_cook' => $this->faker->boolean(),
+            'is_finish' => $this->faker->boolean(),
             //
+            'location_lat'=>"124345.3",
+            'location_long'=>"12345.3",
         ];
     }
 }

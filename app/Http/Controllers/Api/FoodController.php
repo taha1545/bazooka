@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Driver;
-use App\Http\Requests\StoreDriverRequest;
-use App\Http\Requests\UpdateDriverRequest;
+use App\Models\food;
+use App\Http\Requests\StorefoodRequest;
+use App\Http\Requests\UpdatefoodRequest;
 
-class DriverController extends Controller
+class FoodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class DriverController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDriverRequest $request)
+    public function store(StorefoodRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DriverController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Driver $driver)
+    public function show(food $food)
     {
         //
     }
@@ -43,7 +43,7 @@ class DriverController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Driver $driver)
+    public function edit(food $food)
     {
         //
     }
@@ -51,7 +51,7 @@ class DriverController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDriverRequest $request, Driver $driver)
+    public function update(UpdatefoodRequest $request, food $food)
     {
         //
     }
@@ -59,7 +59,7 @@ class DriverController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Driver $driver)
+    public function destroy(food $food)
     {
         //
     }

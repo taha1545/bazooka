@@ -33,13 +33,13 @@ return new class extends Migration
 
             $table->id();
             //link food
-            $table->foreignId('id_food')
+            $table->foreignId('food_id')
                 ->constrained('food');
             //link order
-            $table->foreignId('id_driver')
+            $table->foreignId('order_id')
                ->constrained('orders');
              //number of each food
-            $table->integer("number");
+            $table->integer("number")->default(1);
         });
     }
 

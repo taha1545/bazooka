@@ -17,7 +17,11 @@ class FoodFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'type' => $this->faker->lastName(),
+            'description' => $this->faker->text(),
+            'price' => $this->faker->numberBetween(1,200),
+            'evrg_time' =>  $this->faker->numberBetween(15,300),
         ];
     }
 }

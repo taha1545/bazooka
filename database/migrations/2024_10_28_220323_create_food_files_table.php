@@ -12,7 +12,7 @@ return new class extends Migration
             //
             $table->id();
             //link food
-            $table->foreignId('id_food')
+            $table->foreignId('food_id')
                 ->constrained('food')
                 ->onDelete('cascade');
 

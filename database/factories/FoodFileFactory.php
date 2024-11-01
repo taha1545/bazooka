@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\food_file;
+use App\Models\food;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class FoodFileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'food_id' => food::factory(),
+            'path'=>$this->faker->imageUrl(),
+            'type'=>$this->faker->name(),
         ];
     }
 }
