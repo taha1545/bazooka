@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// create db and models and seeders and factories      done
-//create resources and fillters and validation rules   
+// create db and models and seeders and factories       done
+//create resources and fillters and validation rules    
 // create all routes 
 //complete all controoler 
 // auth
