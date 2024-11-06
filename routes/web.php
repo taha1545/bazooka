@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 
 // create db and models and seeders and factories       done
-//create resources and fillters and validation rules    
-// create all routes 
+//create resources and fillters                         done 
+//validation rules                                      done
+// create all routes                                    done                                                                
 //complete all controoler 
 // auth
 // policies and gates
@@ -28,5 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function (){
-     return "server is up ....." ;
+   return "day 4 for bulding api server ";
 });
+
+

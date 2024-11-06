@@ -15,6 +15,7 @@ class FoodFileResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            
             'filename'=>$this->path,
             'type'=>$this->type,
         ];

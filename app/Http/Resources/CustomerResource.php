@@ -15,6 +15,7 @@ class CustomerResource extends JsonResource
     public function toArray($request): array
     {
         return [
+            'id'=>$this->id,
             'name' => $this->name,
             'phone' => $this->phone,
             'isbanned' => $this->is_banned == 1 ? true : false,

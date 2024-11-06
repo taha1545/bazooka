@@ -22,7 +22,10 @@ class UpdateDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'sometimes|email|unique:users,email,' . $this->route('id'), 
+            'password' => 'sometimes|min:8', 
+            'is_online' => 'sometimes|string|max:255',
+            'is_charge' => 'sometimes|string|max:20', 
         ];
     }
 }

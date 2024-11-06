@@ -16,6 +16,7 @@ class OrderResource extends JsonResource
     {
         return
         [ 
+            'id'=>$this->id,
            'iscook'=>$this->is_cook == 1 ? true : false, 
            'isfinish'=>$this->is_finish == 1 ? true : false, 
            'Latitude'=>$this->location_lat, 

@@ -22,7 +22,9 @@ class StoreDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_user' => 'required|exists:users,id',
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|regex:/^[0-9]{10,15}$/',
         ];
     }
 }

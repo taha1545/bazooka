@@ -15,6 +15,7 @@ class DriverResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id'=>$this->id,
             'name' => $this->name,
             'phone' => $this->phone,
             'online' => $this->is_online == 1 ? true : false,

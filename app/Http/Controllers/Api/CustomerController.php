@@ -1,61 +1,128 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
+
+use App\Filters\Customerfilter;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Resources\CustomerCollection;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
+
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+ 
+//
+    public function index(Request $request)
     {
-        $customer = Customer::with('user')->get();
-        return  response(new CustomerCollection($customer),200);
+         $filter=new Customerfilter();
+         $eloquery=$filter->transform($request);
+        //
+         if(count($eloquery) !== 0){
+            return new CustomerCollection(Customer::where($eloquery)->paginate());
+         }else{
+            return new CustomerCollection(Customer::paginate());
+         }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+//
     public function store(StoreCustomerRequest $request)
-{
-    $customer = Customer::create($request->json()->all());
-    return response()->json(['message' => 'Resource created successfully', 'customer' => $customer], 201);
-}
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Customer $customer)
-{
-    return response()->json($customer);
-}
-
-
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $customer->update($request->json()->all());
-        return response()->json(['message' => 'Resource updated successfully', 'customer' => $customer]);
-    }
-    
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Customer $customer)
-    {
-        $customer->delete();
-        return response()->json(['message' => 'Resource deleted successfully']);
-    }
+        try {
+            DB::beginTransaction();
+            //user create
+            $user = User::create([
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')), 
+            ]);
+            // customer create
+            $customer = Customer::create([
+                'id_user' => $user->id,
+                'name'=>$request->input('name'),
+                'phone' => $request->input('phone'),
+            ]);
+            DB::commit();
+            //return
+            return response()->json([
+                'message' => 'Customer and associated User created successfully',
+                'customer' =>new CustomerResource($customer)
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            //
+            return response()->json([
+                'message' => 'Failed to create customer and user',
+                'error' => $e->getMessage()
+            ], 500);
+        }}
+//    
+        public function show(Customer $customer)
+        {
+            if (!$customer) {
+                return response()->json(['error' => 'Customer not found'], 404);
+            }
+            return response()->json(new CustomerResource($customer), 200);
+        }
+        
+//
+        public function update(UpdateCustomerRequest $request,Customer $customer )
+        {
+            try {
+                DB::beginTransaction();
+                $customer = Customer::findOrFail($customer);
+                //
+                $user = User::findOrFail($customer->id_user);
+                $user->update([
+                    'password' => bcrypt($request->input('password')),
+                ]);
+                //
+                $customer->update([
+                    'name' => $request->input('name'),
+                    'phone' => $request->input('phone'),
+                ]);
+                DB::commit();
+                return response()->json([
+                    'message' => 'Customer and associated User updated successfully',
+                    'customer' => new CustomerResource($customer)
+                ], 200);
+                //
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json([
+                    'message' => 'Failed to update customer and user',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+        }
+        
+ //         
+        public function destroy(Customer $customer)
+        {
+            try {
+                DB::beginTransaction();
+                //
+                $customer = Customer::findOrFail($customer);
+                $user = User::findOrFail($customer->id_user);
+                //
+                $customer->delete();
+                $user->delete();
+                //
+                DB::commit();
+                return response()->json([
+                    'message' => 'Customer and associated User deleted successfully'
+                ], 200);
+                //
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return response()->json([
+                    'message' => 'Failed to delete customer and user',
+                    'error' => $e->getMessage()
+                ], 500);
+            }
+        }
+        
     
 }
