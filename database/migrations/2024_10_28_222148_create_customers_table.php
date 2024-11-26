@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('phone');
             //event
-            $table->boolean('is_banned');
-            $table->integer('bonus');
+            $table->boolean('is_banned')->default(false);
+            $table->integer('bonus')->default(false);
         });
     }
 

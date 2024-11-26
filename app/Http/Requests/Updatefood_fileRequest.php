@@ -11,7 +11,7 @@ class Updatefood_fileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class Updatefood_fileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'sometimes|string|max:255',
+            'type' => 'sometimes|string|max:50',
+            'description' => 'nullable|string|max:1000',
+            'price' => 'sometimes|numeric|min:0',
+            'evrg_time' => 'sometimes|integer|min:1',
         ];
     }
+    
 }

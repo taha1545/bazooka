@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\food_file;
 use App\Http\Requests\Storefood_fileRequest;
 use App\Http\Requests\Updatefood_fileRequest;
+use App\Models\FoodFile;
 
 class FoodFileController extends Controller
 {
@@ -35,7 +36,7 @@ class FoodFileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(food_file $food_file)
+    public function show(FoodFile $food_file)
     {
         //
     }
@@ -43,7 +44,7 @@ class FoodFileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(food_file $food_file)
+    public function edit(FoodFile $food_file)
     {
         //
     }
@@ -51,7 +52,7 @@ class FoodFileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatefood_fileRequest $request, food_file $food_file)
+    public function update(Updatefood_fileRequest $request, FoodFile $food_file)
     {
         //
     }
@@ -59,7 +60,7 @@ class FoodFileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(food_file $food_file)
+    public function destroy(FoodFile $food_file)
     {
         //
     }

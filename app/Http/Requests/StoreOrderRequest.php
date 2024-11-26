@@ -11,7 +11,7 @@ class StoreOrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,12 +22,6 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_customer' => 'required|exists:customers,id',
-            'id_driver' => 'nullable|exists:drivers,id', 
-            'is_cook' => 'required|boolean', 
-            'is_finish' => 'required|boolean', 
-            'location_lat' => 'required|string|regex:/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/', 
-            'location_long' => 'required|string|regex:/^[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?$/', 
         ];
     }
 }

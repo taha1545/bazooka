@@ -7,7 +7,7 @@ use App\Models\food;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\food_file>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FoodFile>
  */
 class FoodFileFactory extends Factory
 {
@@ -19,9 +19,11 @@ class FoodFileFactory extends Factory
     public function definition(): array
     {
         return [
-            'food_id' => food::factory(),
-            'path'=>$this->faker->imageUrl(),
-            'type'=>$this->faker->name(),
+            'food_id' => Food::factory(),
+            'path' => 'uploads/' . $this->faker->uuid . '.jpg', // Generates a unique file path
+            'name' => $this->faker->word() . '.jpg',                       // Generates a random file name
+            'type' => 'image/jpeg',                                        // Example MIME type
         ];
     }
+    
 }

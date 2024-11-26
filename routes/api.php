@@ -15,15 +15,4 @@ use Illuminate\Support\Facades\Route;
 
   Route::apiResource('order',OrderController::class);
 
-     
 
-  
-  
-
-
-
-
-
-  //{{bann , get_bonus}}
-  //{{is_charge(order),is_online}}
- //adddriver,is_cokked,is_finish

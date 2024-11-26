@@ -20,9 +20,11 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_user' => 'required|exists:users,id',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
             'name' => 'required|string|max:255',
             'phone' => 'required|string|regex:/^[0-9]{10,15}$/',
         ];
     }
+    
 }

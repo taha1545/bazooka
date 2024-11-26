@@ -11,7 +11,7 @@ class StorefoodRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class StorefoodRequest extends FormRequest
             'type' => 'required|string|max:50', 
             'description' => 'nullable|string|max:1000',
             'price' => 'required|numeric|min:0', 
-           'evrg_time' => 'required|integer|min:1', 
+           'averagetime' => 'required|integer|min:1', 
         ];
     }
 }

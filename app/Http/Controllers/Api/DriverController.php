@@ -36,9 +36,11 @@ class DriverController extends Controller
             ]);
             // Driver create
             $driver = Driver::create([
-                'id_user' => $user->id,
+                'id_users' => $user->id,
                 'name' => $request->input('name'),
                 'phone' => $request->input('phone'),
+                'is_online'=>false,
+                'is_charge'=>false
             ]);
             DB::commit();
             // Return
@@ -63,38 +65,57 @@ class DriverController extends Controller
         return response()->json(new DriverResource($driver), 200);
     }
 
-    public function update(UpdateDriverRequest $request, Driver $driver)
+    public function update(Request $request, Driver $Driver)
     {
         try {
             DB::beginTransaction();
-            $user = User::findOrFail($driver->id_user);
-            $user->update([
-                'password' => bcrypt($request->input('password')),
-            ]);
-            $driver->update([
-                'phone' => $request->input('phone'),
-                'is_online' => $request->input('is_online'),
-                'is_charge' => $request->input('is_charge'),
-            ]);
+            //user
+            $user = User::findOrFail($Driver->id_users);
+    
+            if ($request->has('password')) {
+                $user->update([
+                    'password' => bcrypt($request->input('password')),
+                ]);
+            }
+            // Driver
+            $updateData = [];
+    
+            if ($request->has('name')) {
+                $updateData['name'] = $request->input('name');
+            }
+            if ($request->has('phone')) {
+                $updateData['phone'] = $request->input('phone');
+            }
+            
+            if ($request->has('is_online')) {
+                $updateData['bonus'] = $request->input('bonus');
+            }
+            
+            if ($request->has('is_charge')) {
+                $updateData['is_banned'] = $request->input('isbanned');
+            }
+            //
+            $Driver->update($updateData);
             DB::commit();
+            //
             return response()->json([
                 'message' => 'Driver and associated User updated successfully',
-                'driver' => new DriverResource($driver)
+                'Driver' => new DriverResource($Driver)
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
-                'message' => 'Failed to update driver and user',
+                'message' => 'Failed to update Driver and user',
                 'error' => $e->getMessage()
             ], 500);
-        }
+        } 
     }
 
     public function destroy(Driver $driver)
     {
         try {
             DB::beginTransaction();
-            $user = User::findOrFail($driver->id_user);
+            $user = User::findOrFail($driver->id_users);
             $driver->delete();
             $user->delete();
             DB::commit();

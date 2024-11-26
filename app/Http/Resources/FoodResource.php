@@ -21,7 +21,7 @@ class FoodResource extends JsonResource
             'description'=>$this->description,
              'price'=>$this->price,
              'evrgtime'=>$this->evrg_time,
-             'FoodFiles'=> new FoodFileCollection ($this->foodFiles),
+             'files'=> new FoodFileCollection ($this->foodFiles),
         ];
     }
 }

@@ -9,8 +9,10 @@ use Database\Factories\FoodFileFactory;
 class FoodFile extends Model
 {
     use HasFactory;  protected $fillable = [
+        'food_id',
         'path',
         'type',
+        'name',
     ];
 
 

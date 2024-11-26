@@ -9,27 +9,23 @@ use App\Models\food;
 use App\Models\FoodFile;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Customer;
 
 
 
-// create db and models and seeders and factories       done
-//create resources and fillters                         done 
-//validation rules                                      done
-// create all routes                                    done                                                                
-//complete all controoler 
-// auth
+
+// auth                   
 // policies and gates
 // cache 
 //queue
 // enent and brodcasting 
-///image upload and send
-// secrity and performance 
-// api test 
-// design front end
+// secrity and performance  
+
 
 
 Route::get('/', function (){
-   return "day 4 for bulding api server ";
+       return  "full api server";
 });
 
 
